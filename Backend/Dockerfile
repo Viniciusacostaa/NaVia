@@ -2,10 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia todos os arquivos da pasta atual para o container
+# Copia todo o repositório
 COPY . .
 
-# Restaura dependências e compila a aplicação
+# Entra na pasta do Backend onde está o arquivo .csproj
+WORKDIR /src/Backend
+
+# Restaura as dependências e compila o projeto
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/out
 
