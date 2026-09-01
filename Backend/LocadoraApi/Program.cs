@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using LocadoraApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,13 +18,30 @@ builder.Services.AddCors(options =>
     options.AddPolicy("PermitirFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000")
+            policy.SetIsOriginAllowed(origin => true)
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials();
         });
 });
 
 var app = builder.Build();
+
+// Inicialização automática e idempotente do banco de dados (migração + seed de veículos e admin)
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        DbInitializer.Initialize(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocorreu um erro durante a inicialização/seed do banco de dados.");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
