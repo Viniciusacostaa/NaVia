@@ -2,12 +2,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia o csproj e restaura dependências
-COPY *.csproj ./
-RUN dotnet restore
-
-# Copia todo o restante e compila
+# Copia todos os arquivos da pasta atual para o container
 COPY . .
+
+# Restaura dependências e compila a aplicação
+RUN dotnet restore
 RUN dotnet publish -c Release -o /app/out
 
 # Estágio de Execução (Runtime)
@@ -18,4 +17,4 @@ COPY --from=build /app/out .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "NomeDoSeuProjeto.dll"]
+ENTRYPOINT ["dotnet", "NaVia.dll"]
