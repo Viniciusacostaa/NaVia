@@ -25,12 +25,10 @@ export default function Home() {
   useEffect(() => {
     async function carregarCarros() {
       try {
-        // Pega a URL do ngrok configurada na Vercel (ou cai de volta no localhost se testar localmente)
         const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5277"
 
         const resposta = await fetch(`${baseUrl}/api/Carros`, {
           headers: {
-            // ESSENCIAL: Ignora a página de aviso em HTML do ngrok
             "ngrok-skip-browser-warning": "true",
           },
         })
@@ -39,10 +37,18 @@ export default function Home() {
           throw new Error(`Erro HTTP: status ${resposta.status}`)
         }
 
-        const dados: Carro[] = await resposta.json()
-        setCarros(dados.slice(0, 3))
+        const dados = await resposta.json()
+        
+        // Garante que 'dados' é um array antes de tentar fazer .slice()
+        if (Array.isArray(dados)) {
+          setCarros(dados.slice(0, 3))
+        } else {
+          console.error("A API não retornou uma lista/array:", dados)
+          setCarros([])
+        }
       } catch (erro) {
-        console.error("Erro ao carregar carros:", erro)
+        console.error("Erro ao carregar carros na Home:", erro)
+        setCarros([])
       } finally {
         setCarregando(false)
       }
@@ -79,7 +85,7 @@ export default function Home() {
               <div className="bloco">
                 <div className="imagem-wrapper">
                   <Image
-                    src={carros[0].imgUrl}
+                    src={carros[0].imgUrl || "/civic.png"}
                     alt={`Foto do ${carros[0].marca} ${carros[0].modelo}`}
                     fill
                     className="imagem-veiculo"
@@ -105,7 +111,7 @@ export default function Home() {
               <div className="bloco" style={{ animationDelay: "0.08s" }}>
                 <div className="imagem-wrapper">
                   <Image
-                    src="/civic.png"
+                    src={carros[1].imgUrl || "/civic.png"}
                     alt={`Foto do ${carros[1].marca} ${carros[1].modelo}`}
                     fill
                     className="imagem-veiculo"
@@ -131,7 +137,7 @@ export default function Home() {
               <div className="bloco" style={{ animationDelay: "0.16s" }}>
                 <div className="imagem-wrapper">
                   <Image
-                    src="/golf.webp"
+                    src={carros[2].imgUrl || "/golf.webp"}
                     alt={`Foto do ${carros[2].marca} ${carros[2].modelo}`}
                     fill
                     className="imagem-veiculo"
