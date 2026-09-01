@@ -25,7 +25,20 @@ export default function Home() {
   useEffect(() => {
     async function carregarCarros() {
       try {
-        const resposta = await fetch("http://localhost:5277/api/Carros")
+        // Pega a URL do ngrok configurada na Vercel (ou cai de volta no localhost se testar localmente)
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5277"
+
+        const resposta = await fetch(`${baseUrl}/api/Carros`, {
+          headers: {
+            // ESSENCIAL: Ignora a página de aviso em HTML do ngrok
+            "ngrok-skip-browser-warning": "true",
+          },
+        })
+
+        if (!resposta.ok) {
+          throw new Error(`Erro HTTP: status ${resposta.status}`)
+        }
+
         const dados: Carro[] = await resposta.json()
         setCarros(dados.slice(0, 3))
       } catch (erro) {
@@ -88,7 +101,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Bloco 2 — troque o src pela imagem que quiser para este quadrado */}
             {carros[1] && (
               <div className="bloco" style={{ animationDelay: "0.08s" }}>
                 <div className="imagem-wrapper">
@@ -115,7 +127,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Bloco 3 — troque o src pela imagem que quiser para este quadrado */}
             {carros[2] && (
               <div className="bloco" style={{ animationDelay: "0.16s" }}>
                 <div className="imagem-wrapper">

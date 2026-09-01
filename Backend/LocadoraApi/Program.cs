@@ -43,13 +43,12 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Swagger ativado em qualquer ambiente para testes no Ngrok
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+// IMPORTANTE: Comentado para não quebrar o roteamento do Ngrok local
+// app.UseHttpsRedirection();
 
 app.UseCors("PermitirFrontend");
 
