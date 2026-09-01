@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Área que centraliza o quadrado de login na tela */
+.menu-login {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* O quadrado (card) do login */
+.bloco-login {
+    width: 30rem;
+    background-color: var(--bg-secondary);
+    border-radius: 1rem;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Título "Login" */
+.titulo {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Caixa que junta os dois campos (login e senha) */
+.caixa-login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Cada label (texto acima do input) */
+.login, .senha {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+/* Os dois campos de texto (email e senha) */
+.loginInput, .senhaInput {
+    width: 100%;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--text-secondary);
+    border-radius: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Deixa a borda azul quando o usuário clica no campo */
+.loginInput:focus, .senhaInput:focus {
+    outline: none;
+    border-color: var(--bg-terty);
+}
+
+/* Botão principal de login */
+.botao-login {
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--bg-quint);
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.botao-login:hover {
+    background-color: var(--bg-terty);
+    color: var(--bg-quart);
+}
+
+/* Link sutil para a página de cadastro */
+.link-cadastro {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.link-cadastro:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}

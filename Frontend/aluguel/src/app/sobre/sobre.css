@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sobre-corpo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+}
+
+/* ---------- Hero ---------- */
+.sobre-hero {
+    max-width: 42rem;
+    animation: entradaSobre 0.5s ease both;
+}
+
+.sobre-tag {
+    display: inline-block;
+    color: var(--bg-terty);
+    background-color: rgba(160, 202, 242, 0.1);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+}
+
+.sobre-titulo {
+    color: var(--text-color);
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+}
+
+.sobre-texto {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* ---------- Números ---------- */
+.sobre-numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.25rem;
+    animation: entradaSobre 0.5s ease 0.05s both;
+}
+
+.numero-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(160, 202, 242, 0.15);
+    border-radius: 0.75rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.numero-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(160, 202, 242, 0.35);
+}
+
+.numero-valor {
+    color: var(--bg-terty);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.numero-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+/* ---------- Blocos de texto ---------- */
+.sobre-subtitulo {
+    color: var(--text-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+}
+
+.sobre-bloco-texto {
+    max-width: 42rem;
+}
+
+/* ---------- Valores ---------- */
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.valor-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(160, 202, 242, 0.15);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(17, 41, 64, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.valor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(17, 41, 64, 0.35);
+    border-color: rgba(160, 202, 242, 0.35);
+}
+
+.valor-titulo {
+    color: var(--text-color);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.valor-texto {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ---------- CTA final ---------- */
+.sobre-cta {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(160, 202, 242, 0.15);
+    border-radius: 1rem;
+}
+
+.sobre-cta-titulo {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.sobre-cta .sobre-texto {
+    max-width: 32rem;
+    margin: 0 auto 1.5rem;
+}
+
+.sobre-cta-botao {
+    display: inline-block;
+    background-color: var(--bg-quint);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.6rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.sobre-cta-botao:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-terty);
+    color: var(--bg-quart);
+}
+
+/* ---------- Animação ---------- */
+@keyframes entradaSobre {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Responsivo ---------- */
+@media (min-width: 768px) {
+    .sobre-titulo {
+        font-size: 2.75rem;
+    }
+}

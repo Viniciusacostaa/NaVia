@@ -1,0 +1,51 @@
+# ==========================================
+# 1. ARQUIVOS SENSÍVEIS E BANCO DE DADOS
+# ==========================================
+# Arquivos de Banco de Dados SQLite e SQL Server
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+locadora.db
+*.mdf
+*.ldf
+*.ndf
+
+# Configurações de Produção / Segredos Locais
+appsettings.Production.json
+appsettings.*.local.json
+appsettings.secrets.json
+secrets.json
+
+# Certificados SSL / HTTPS de desenvolvimento
+*.pfx
+*.p12
+*.cer
+*.crt
+*.pem
+*.key
+
+# ==========================================
+# 2. .NET COMPILAÇÃO, BINÁRIOS E PACOTES
+# ==========================================
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ==========================================
+# 3. IDES, TESTES E LOGS
+# ==========================================
+.vs/
+.dotnet/
+TestResults/
+*.log
+.DS_Store
+Thumbs.db
