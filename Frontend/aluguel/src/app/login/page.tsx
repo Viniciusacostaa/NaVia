@@ -68,17 +68,6 @@ export default function Login() {
         }
     }
 
-    function preencherCredenciais(tipo: "admin" | "cliente") {
-        if (tipo === "admin") {
-            setLogin("admin")
-            setSenha("admin")
-        } else {
-            setLogin("cliente@navia.com")
-            setSenha("cliente123")
-        }
-        setErro("")
-    }
-
     return (
         <div className="login-page">
             <Header />
@@ -148,26 +137,6 @@ export default function Login() {
                                 "Acessar Plataforma"
                             )}
                         </button>
-
-                        <div className="atalhos-demo">
-                            <p className="atalhos-titulo">Testar com credenciais pré-definidas:</p>
-                            <div className="botoes-demo">
-                                <button
-                                    type="button"
-                                    onClick={() => preencherCredenciais("admin")}
-                                    className="btn-demo btn-demo-admin"
-                                >
-                                    🛡️ Admin (admin / admin)
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => preencherCredenciais("cliente")}
-                                    className="btn-demo btn-demo-cliente"
-                                >
-                                    🚗 Cliente (cliente@navia.com)
-                                </button>
-                            </div>
-                        </div>
 
                         <div className="rodape-login">
                             <Link href="/cadastro" className="link-cadastro">

@@ -17,20 +17,176 @@ interface Carro {
     imgUrl?: string
 }
 
+const FROTA_INICIAL: Carro[] = [
+    {
+        id: 1,
+        marca: "Honda",
+        modelo: "Civic Touring 1.5 Turbo",
+        ano: 2024,
+        cor: "Preto Cristal",
+        categoria: "Sedan",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 220.0,
+        imgUrl: "/cars/civic.jpg",
+    },
+    {
+        id: 2,
+        marca: "Toyota",
+        modelo: "Corolla Altis Hybrid",
+        ano: 2024,
+        cor: "Prata Lunar",
+        categoria: "Sedan",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 210.0,
+        imgUrl: "/cars/corolla.jpg",
+    },
+    {
+        id: 3,
+        marca: "Volkswagen",
+        modelo: "Golf GTI 2.0 TSI",
+        ano: 2023,
+        cor: "Vermelho Tornado",
+        categoria: "Hatchback",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 280.0,
+        imgUrl: "/cars/golf.jpg",
+    },
+    {
+        id: 4,
+        marca: "Jeep",
+        modelo: "Compass Limited T270",
+        ano: 2024,
+        cor: "Cinza Granite",
+        categoria: "SUV",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 260.0,
+        imgUrl: "/cars/compass.jpg",
+    },
+    {
+        id: 5,
+        marca: "BMW",
+        modelo: "320i M Sport 2.0",
+        ano: 2024,
+        cor: "Azul Portimão",
+        categoria: "Luxo",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 450.0,
+        imgUrl: "/cars/bmw320i.jpg",
+    },
+    {
+        id: 6,
+        marca: "Porsche",
+        modelo: "911 Carrera S",
+        ano: 2023,
+        cor: "Amarelo Racing",
+        categoria: "Esportivo",
+        cambio: "Automático",
+        disponivel: false,
+        precoDiaria: 1200.0,
+        imgUrl: "/cars/porsche911.jpg",
+    },
+    {
+        id: 7,
+        marca: "Ford",
+        modelo: "Mustang GT 5.0 V8",
+        ano: 2023,
+        cor: "Vermelho Race",
+        categoria: "Esportivo",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 850.0,
+        imgUrl: "/cars/mustang.jpg",
+    },
+    {
+        id: 8,
+        marca: "Toyota",
+        modelo: "Hilux SRX 4x4 Diesel",
+        ano: 2024,
+        cor: "Branco Polar",
+        categoria: "Picape",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 380.0,
+        imgUrl: "/cars/hilux.jpg",
+    },
+    {
+        id: 9,
+        marca: "BYD",
+        modelo: "Seal AWD 530cv",
+        ano: 2024,
+        cor: "Azul Glacial",
+        categoria: "Elétrico",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 340.0,
+        imgUrl: "/cars/bydseal.jpg",
+    },
+    {
+        id: 10,
+        marca: "Chevrolet",
+        modelo: "Onix Premier 1.0 Turbo",
+        ano: 2024,
+        cor: "Cinza Drake",
+        categoria: "Hatchback",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 130.0,
+        imgUrl: "/cars/onix.jpg",
+    },
+    {
+        id: 11,
+        marca: "Hyundai",
+        modelo: "Creta Ultimate 2.0",
+        ano: 2024,
+        cor: "Branco Perolizado",
+        categoria: "SUV",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 195.0,
+        imgUrl: "/cars/creta.jpg",
+    },
+    {
+        id: 12,
+        marca: "Volvo",
+        modelo: "XC60 T8 Recharge",
+        ano: 2024,
+        cor: "Preto Ônix",
+        categoria: "Luxo",
+        cambio: "Automático",
+        disponivel: true,
+        precoDiaria: 520.0,
+        imgUrl: "/cars/volvo.jpg",
+    }
+]
+
 export default function Catalogo() {
-    const [carros, setCarros] = useState<Carro[]>([])
-    const [carregando, setCarregando] = useState(true)
+    const [carros, setCarros] = useState<Carro[]>(FROTA_INICIAL)
+    const [carregando, setCarregando] = useState(false)
     const [busca, setBusca] = useState("")
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todas")
 
     useEffect(() => {
         async function carregarCarros() {
             try {
-                const resposta = await fetch("http://localhost:5277/api/Carros")
-                const dados = await resposta.json()
-                setCarros(dados)
+                const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5277"
+                const resposta = await fetch(`${baseUrl}/api/Carros`, {
+                    headers: {
+                        "ngrok-skip-browser-warning": "true"
+                    }
+                })
+                if (resposta.ok) {
+                    const dados = await resposta.json()
+                    if (Array.isArray(dados) && dados.length > 0) {
+                        setCarros(dados)
+                    }
+                }
             } catch (erro) {
-                console.error("Erro ao carregar carros:", erro)
+                console.warn("Backend conectando. Usando catálogo pré-carregado.", erro)
             } finally {
                 setCarregando(false)
             }
@@ -122,7 +278,7 @@ export default function Catalogo() {
                                             alt={`${carro.marca} ${carro.modelo}`}
                                             className="cardCarro-foto"
                                             onError={(e) => {
-                                                (e.target as HTMLImageElement).src = "/civic.png"
+                                                (e.target as HTMLImageElement).src = "/cars/civic.jpg"
                                             }}
                                         />
                                     ) : (

@@ -11,157 +11,178 @@ namespace LocadoraApi.Data
             context.Database.Migrate();
 
             // 1. Seed de Veículos (Garante que os veículos persistam de forma definitiva)
+            var carrosIniciais = new List<Carro>
+            {
+                new Carro
+                {
+                    Marca = "Honda",
+                    Modelo = "Civic Touring 1.5 Turbo",
+                    Ano = 2024,
+                    Cor = "Preto Cristal",
+                    Categoria = "Sedan",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 220.00m,
+                    ImgUrl = "/cars/civic.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Toyota",
+                    Modelo = "Corolla Altis Hybrid",
+                    Ano = 2024,
+                    Cor = "Prata Lunar",
+                    Categoria = "Sedan",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 210.00m,
+                    ImgUrl = "/cars/corolla.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Volkswagen",
+                    Modelo = "Golf GTI 2.0 TSI",
+                    Ano = 2023,
+                    Cor = "Vermelho Tornado",
+                    Categoria = "Hatchback",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 280.00m,
+                    ImgUrl = "/cars/golf.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Jeep",
+                    Modelo = "Compass Limited T270",
+                    Ano = 2024,
+                    Cor = "Cinza Granite",
+                    Categoria = "SUV",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 260.00m,
+                    ImgUrl = "/cars/compass.jpg"
+                },
+                new Carro
+                {
+                    Marca = "BMW",
+                    Modelo = "320i M Sport 2.0",
+                    Ano = 2024,
+                    Cor = "Azul Portimão",
+                    Categoria = "Luxo",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 450.00m,
+                    ImgUrl = "/cars/bmw320i.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Porsche",
+                    Modelo = "911 Carrera S",
+                    Ano = 2023,
+                    Cor = "Amarelo Racing",
+                    Categoria = "Esportivo",
+                    Cambio = "Automático",
+                    Disponivel = false,
+                    PrecoDiaria = 1200.00m,
+                    ImgUrl = "/cars/porsche911.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Ford",
+                    Modelo = "Mustang GT 5.0 V8",
+                    Ano = 2023,
+                    Cor = "Vermelho Race",
+                    Categoria = "Esportivo",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 850.00m,
+                    ImgUrl = "/cars/mustang.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Toyota",
+                    Modelo = "Hilux SRX 4x4 Diesel",
+                    Ano = 2024,
+                    Cor = "Branco Polar",
+                    Categoria = "Picape",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 380.00m,
+                    ImgUrl = "/cars/hilux.jpg"
+                },
+                new Carro
+                {
+                    Marca = "BYD",
+                    Modelo = "Seal AWD 530cv",
+                    Ano = 2024,
+                    Cor = "Azul Glacial",
+                    Categoria = "Elétrico",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 340.00m,
+                    ImgUrl = "/cars/bydseal.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Chevrolet",
+                    Modelo = "Onix Premier 1.0 Turbo",
+                    Ano = 2024,
+                    Cor = "Cinza Drake",
+                    Categoria = "Hatchback",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 130.00m,
+                    ImgUrl = "/cars/onix.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Hyundai",
+                    Modelo = "Creta Ultimate 2.0",
+                    Ano = 2024,
+                    Cor = "Branco Perolizado",
+                    Categoria = "SUV",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 195.00m,
+                    ImgUrl = "/cars/creta.jpg"
+                },
+                new Carro
+                {
+                    Marca = "Volvo",
+                    Modelo = "XC60 T8 Recharge",
+                    Ano = 2024,
+                    Cor = "Preto Ônix",
+                    Categoria = "Luxo",
+                    Cambio = "Automático",
+                    Disponivel = true,
+                    PrecoDiaria = 520.00m,
+                    ImgUrl = "/cars/volvo.jpg"
+                }
+            };
+
             if (!context.Carros.Any())
             {
-                var carrosIniciais = new List<Carro>
-                {
-                    new Carro
-                    {
-                        Marca = "Honda",
-                        Modelo = "Civic Touring 1.5 Turbo",
-                        Ano = 2024,
-                        Cor = "Preto Cristal",
-                        Categoria = "Sedan",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 220.00m,
-                        ImgUrl = "/civic.png"
-                    },
-                    new Carro
-                    {
-                        Marca = "Toyota",
-                        Modelo = "Corolla Altis Hybrid",
-                        Ano = 2024,
-                        Cor = "Prata Lunar",
-                        Categoria = "Sedan",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 210.00m,
-                        ImgUrl = "/corolla.png"
-                    },
-                    new Carro
-                    {
-                        Marca = "Volkswagen",
-                        Modelo = "Golf GTI 2.0 TSI",
-                        Ano = 2023,
-                        Cor = "Vermelho Tornado",
-                        Categoria = "Hatchback",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 280.00m,
-                        ImgUrl = "/golf.webp"
-                    },
-                    new Carro
-                    {
-                        Marca = "Jeep",
-                        Modelo = "Compass Limited T270",
-                        Ano = 2024,
-                        Cor = "Cinza Granite",
-                        Categoria = "SUV",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 260.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "BMW",
-                        Modelo = "320i M Sport 2.0",
-                        Ano = 2024,
-                        Cor = "Azul Portimão",
-                        Categoria = "Luxo",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 450.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Porsche",
-                        Modelo = "911 Carrera S",
-                        Ano = 2023,
-                        Cor = "Amarelo Racing",
-                        Categoria = "Esportivo",
-                        Cambio = "Automático",
-                        Disponivel = false,
-                        PrecoDiaria = 1200.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Ford",
-                        Modelo = "Mustang GT 5.0 V8",
-                        Ano = 2023,
-                        Cor = "Vermelho Race",
-                        Categoria = "Esportivo",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 850.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Toyota",
-                        Modelo = "Hilux SRX 4x4 Diesel",
-                        Ano = 2024,
-                        Cor = "Branco Polar",
-                        Categoria = "Picape",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 380.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "BYD",
-                        Modelo = "Seal AWD 530cv",
-                        Ano = 2024,
-                        Cor = "Azul Glacial",
-                        Categoria = "Elétrico",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 340.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Chevrolet",
-                        Modelo = "Onix Premier 1.0 Turbo",
-                        Ano = 2024,
-                        Cor = "Cinza Drake",
-                        Categoria = "Hatchback",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 130.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Hyundai",
-                        Modelo = "Creta Ultimate 2.0",
-                        Ano = 2024,
-                        Cor = "Branco Perolizado",
-                        Categoria = "SUV",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 195.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&auto=format&fit=crop&q=60"
-                    },
-                    new Carro
-                    {
-                        Marca = "Volvo",
-                        Modelo = "XC60 T8 Recharge",
-                        Ano = 2024,
-                        Cor = "Preto Ônix",
-                        Categoria = "Luxo",
-                        Cambio = "Automático",
-                        Disponivel = true,
-                        PrecoDiaria = 520.00m,
-                        ImgUrl = "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&auto=format&fit=crop&q=60"
-                    }
-                };
-
                 context.Carros.AddRange(carrosIniciais);
+                context.SaveChanges();
+            }
+            else
+            {
+                // Sincroniza fotos e dados dos modelos existentes com os novos caminhos
+                foreach (var carroSeed in carrosIniciais)
+                {
+                    var existente = context.Carros.FirstOrDefault(c => c.Marca == carroSeed.Marca && c.Modelo == carroSeed.Modelo);
+                    if (existente != null)
+                    {
+                        existente.ImgUrl = carroSeed.ImgUrl;
+                        existente.Cor = carroSeed.Cor;
+                        existente.Categoria = carroSeed.Categoria;
+                        existente.Ano = carroSeed.Ano;
+                        existente.PrecoDiaria = carroSeed.PrecoDiaria;
+                    }
+                    else
+                    {
+                        context.Carros.Add(carroSeed);
+                    }
+                }
                 context.SaveChanges();
             }
 

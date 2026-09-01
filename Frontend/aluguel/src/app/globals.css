@@ -1,20 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #24598c;
-  --bg-secondary: #294259;
-  --bg-terty: #a0caf2;
-  --bg-quart: #112940;
-  --bg-quint: #3b92e3;
-  --bg-sext: #3078ba;
-  --border: #112940;
-  --text-color: #dbeeff;
-  --text-secondary: #bddfff;
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), 'Syne', system-ui, sans-serif;
+  --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
 
-  --analog: #247b8c;
-  --ana-one: #24398c;
-  --ana-two: #248c7c;
-  --ana-three: #31248c;
+  --bg-primary: #0a1424;
+  --bg-secondary: #132438;
+  --bg-terty: #a0caf2;
+  --bg-quart: #0d1b2a;
+  --bg-quint: #1e3a5f;
+  --bg-sext: #2b6cb0;
+  --accent-cyan: #00d2ff;
+  --accent-blue: #3b82f6;
+  --accent-glow: rgba(0, 210, 255, 0.25);
+  
+  --border: rgba(160, 202, 242, 0.15);
+  --border-hover: rgba(0, 210, 255, 0.45);
+  --text-color: #f0f7ff;
+  --text-secondary: #94b8db;
+  --text-muted: #627d98;
+
+  --card-bg: rgba(19, 36, 56, 0.75);
+  --card-border: rgba(160, 202, 242, 0.14);
 }
 
 * {
@@ -25,6 +33,25 @@
 
 body {
   background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(30, 58, 95, 0.45) 0%, transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(0, 210, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(43, 108, 176, 0.15) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .marca-logo, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
 }
 
 /* ---------- Layout geral ---------- */
@@ -35,117 +62,399 @@ body {
 }
 
 .corpo {
-  max-width: 1280px;
+  max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
+  padding: 2.5rem 1.5rem 5rem;
 }
 
-/* ---------- Intro / título ---------- */
-.intro {
-  margin-bottom: 3rem;
-  animation: entrada 0.5s ease both;
+/* ---------- Hero Section ---------- */
+.hero-home {
+  text-align: center;
+  padding: 3.5rem 1rem 3rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+.hero-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
 }
 
 .titulo-home {
-  color: var(--text-color);
-  font-size: 2.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitulo-home {
   color: var(--text-secondary);
-  margin-top: 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: 400;
+  max-width: 680px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary-hero {
+  background: linear-gradient(135deg, #00d2ff 0%, #0077ff 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 119, 255, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 210, 255, 0.5);
+}
+
+.btn-secondary-hero {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(160, 202, 242, 0.25);
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.btn-secondary-hero:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+/* ---------- Section Header ---------- */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(160, 202, 242, 0.12);
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.link-ver-todos {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: gap 0.2s ease, opacity 0.2s ease;
+}
+
+.link-ver-todos:hover {
+  gap: 0.6rem;
+  opacity: 0.9;
 }
 
 /* ---------- Grid de veículos ---------- */
+/* ---------- Grid de veículos da Home ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
-.bloco {
-  border: 1px solid rgba(160, 202, 242, 0.15);
-  border-radius: 0.75rem;
+.carro-card-home {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
   overflow: hidden;
-  background-color: var(--bg-secondary);
-  box-shadow: 0 2px 10px rgba(17, 41, 64, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  animation: entrada 0.5s ease both;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: entrada 0.6s ease both;
+  position: relative;
 }
 
-.bloco:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(17, 41, 64, 0.35);
-  border-color: rgba(160, 202, 242, 0.35);
+.carro-card-home:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
 }
 
 .imagem-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   background-color: var(--bg-quart);
+  overflow: hidden;
 }
 
 .imagem-veiculo {
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bloco:hover .imagem-veiculo {
-  transform: scale(1.04);
+.carro-card-home:hover .imagem-veiculo {
+  transform: scale(1.06);
 }
 
-.sobre-veiculo {
-  background-color: var(--bg-quint);
-  padding: 0.85rem 1rem;
+.badge-cat-float {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(10, 20, 36, 0.75);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  color: var(--accent-cyan);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.badge-status-float {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.badge-disponivel {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-indisponivel {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.card-corpo {
+  padding: 1.25rem 1.25rem 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  flex: 1;
 }
 
-.nome-veiculo {
-  color: var(--text-color);
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-align: center;
+.card-topo-info {
+  margin-bottom: 0.75rem;
 }
 
-/* ---------- Dados do veículo (ano, preço) ---------- */
-.dados-veiculo {
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+.marca-modelo-home {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
 }
 
-.dado-item {
+.cor-veiculo-home {
   color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
-.dado-separador {
+.specs-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  margin: 0.5rem 0 1rem;
+  border-top: 1px solid rgba(160, 202, 242, 0.1);
+  border-bottom: 1px solid rgba(160, 202, 242, 0.1);
+}
+
+.spec-mini-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   color: var(--text-secondary);
-  opacity: 0.4;
+  font-size: 0.8rem;
+}
+
+.spec-mini-item svg {
+  color: var(--accent-cyan);
+}
+
+.card-rodape-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.preco-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.preco-label {
   font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.preco-valor {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+}
+
+.preco-unidade {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.btn-card-alugar {
+  background: rgba(0, 210, 255, 0.12);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-card-alugar:hover {
+  background: var(--accent-cyan);
+  color: #0a1424;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ---------- Seção de Benefícios ---------- */
+.secao-beneficios {
+  margin-top: 3rem;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(180deg, rgba(19, 36, 56, 0.4) 0%, rgba(13, 27, 42, 0.7) 100%);
+  border: 1px solid rgba(160, 202, 242, 0.12);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(12px);
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.beneficio-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.beneficio-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
+.beneficio-titulo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.beneficio-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* ---------- Skeleton (loading) ---------- */
 .bloco-skeleton {
-  height: 18rem;
+  min-height: 22rem;
+  border-radius: 1rem;
   background: linear-gradient(
     100deg,
-    var(--bg-secondary) 30%,
-    var(--bg-quart) 50%,
-    var(--bg-secondary) 70%
+    rgba(19, 36, 56, 0.6) 30%,
+    rgba(30, 58, 95, 0.5) 50%,
+    rgba(19, 36, 56, 0.6) 70%
   );
   background-size: 200% 100%;
   animation: skeletonPulse 1.4s ease-in-out infinite;
+  border: 1px solid rgba(160, 202, 242, 0.1);
 }
 
 @keyframes skeletonPulse {
@@ -157,19 +466,31 @@ body {
   }
 }
 
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 /* ---------- Estado vazio ---------- */
 .grid-vazio {
   color: var(--text-secondary);
-  padding: 3rem 0;
+  padding: 4rem 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  background: rgba(19, 36, 56, 0.4);
+  border-radius: 1rem;
+  border: 1px dashed rgba(160, 202, 242, 0.2);
 }
 
 /* ---------- Animação de entrada ---------- */
 @keyframes entrada {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -180,10 +501,10 @@ body {
 /* ---------- Responsivo ---------- */
 @media (min-width: 768px) {
   .titulo-home {
-    font-size: 2.75rem;
+    font-size: 3.25rem;
   }
 
   .corpo {
-    padding: 4rem 3rem 6rem;
+    padding: 3.5rem 2.5rem 6rem;
   }
 }
